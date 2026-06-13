@@ -17,7 +17,6 @@ export const securityConfig = {
   ],
   forbiddenFields: ["password"],
   accessLevels: {
-    author: { maxLimit: 50, allowedPopulate: ["*"] },
     user: { maxLimit: 100, allowedPopulate: ["*"] },
     admin: { maxLimit: 1000, allowedPopulate: ["*"] },
     superAdmin: { maxLimit: 1000, allowedPopulate: ["*"] },
