@@ -1,6 +1,5 @@
 import Product from "../Product/productMd.js";
 import User from "../User/userMd.js";
-import Product from "./brandMd.js";
 import ApiFeatures, { HandleERROR, catchAsync } from "vanta-api";
 import fs from "fs";
 import { __direname } from "../../app.js";
@@ -88,8 +87,38 @@ export const update = catchAsync(async (req, res, next) => {
   });
 });
 export const remove = catchAsync(async (req, res, next) => {
- 
+  const products = await Product.findById(req.params.id);
+  if (products?.boughtCount > 0) {
+    return next(new HandleERROR("you can't remove", 400));
+  }
+  await Product.findByIdAndDelete(req.params.id);
+  for (let img of products?.images) {
+    if (fs.existsSync(`${__direname}/Public/${img}`)) {
+      fs.unlinkSync(`${__direname}/Public/${img}`);
+    }
+  }
+  // comment
+  return res.status(201).json({
+    success: true,
+    message: "deleted product successfully",
+  });
 });
 export const favorite = catchAsync(async (req, res, next) => {
- 
+  const user = await User.findById(req?.userId);
+  let isFav = user?.favoriteProductId?.find((item) =>
+    item?.toString() == req?.params?.id?.toString() ? true : false,
+  );
+  if (isFav) {
+    user.favoriteProductId = user.favoriteProductId?.filter(
+      (item) => item?.toString() != req?.params?.id?.toString(),
+    );
+  } else {
+    user.favoriteProductId.push(req.params.id);
+  }
+  await user.save();
+  return res.status(201).json({
+    success: true,
+    data: isFav,
+    message: isFav ? "deleted product is favorite" : "add product is favorite",
+  });
 });
