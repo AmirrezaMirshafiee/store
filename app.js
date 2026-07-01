@@ -10,6 +10,7 @@ import {
   authRouter,
   brandRouter,
   categoryRouter,
+  productRouter,
   sliderRouter,
   uploadRouter,
   userRouter,
@@ -38,6 +39,7 @@ app.use("/api/brand", brandRouter);
 app.use("/api/slider", sliderRouter);
 app.use("/api/category", categoryRouter);
 app.use("/api/variants", variantRouter);
+app.use("/api/products", productRouter);
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.use((req, res, next) => {
   return res.status(404).json({
