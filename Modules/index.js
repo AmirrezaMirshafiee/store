@@ -6,4 +6,5 @@ import sliderRouter from "./Slider/slider.js";
 import categoryRouter from "./Category/category.js";
 import variantRouter from "./Variant/variant.js";
 import productRouter from "./Product/product.js";
-export {uploadRouter,userRouter,authRouter,brandRouter,sliderRouter,categoryRouter,variantRouter,productRouter}
+import productVariantRouter from "./ProductVariant/productVariant.js";
+export {uploadRouter,userRouter,authRouter,brandRouter,sliderRouter,categoryRouter,variantRouter,productRouter,productVariantRouter}
