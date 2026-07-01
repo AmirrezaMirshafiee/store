@@ -93,7 +93,7 @@ export const loginWithOtp = catchAsync(async (req, res, next) => {
 });
 export const resendCode = catchAsync(async (req, res, next) => {
   const { phoneNumber } = req.body;
-  const resultSms = sendAuthCode(phoneNumber);
+  const resultSms =await sendAuthCode(phoneNumber);
   if (!resultSms) {
     return res.status(500).json({
       status: false,

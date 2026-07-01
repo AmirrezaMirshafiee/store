@@ -1,5 +1,8 @@
 import uploadRouter from "./Upload/upload.js";
 import userRouter from "./User/user.js";
 import authRouter from "./Auth/auth.js";
-
-export {uploadRouter,userRouter,authRouter}
+import brandRouter from "./Brand/brand.js";
+import sliderRouter from "./Slider/slider.js";
+import categoryRouter from "./Category/category.js";
+import variantRouter from "./Variant/variant.js";
+export {uploadRouter,userRouter,authRouter,brandRouter,sliderRouter,categoryRouter,variantRouter}
