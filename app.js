@@ -7,9 +7,11 @@ import { catchError } from "vanta-api";
 import swaggerUi from "swagger-ui-express";
 import { exportValidationData } from "./Middlewares/ExportValidation.js";
 import {
+  addressRouter,
   authRouter,
   brandRouter,
   categoryRouter,
+  commentRouter,
   productRouter,
   productVariantRouter,
   sliderRouter,
@@ -42,6 +44,8 @@ app.use("/api/category", categoryRouter);
 app.use("/api/variants", variantRouter);
 app.use("/api/products", productRouter);
 app.use("/api/product-variant", productVariantRouter);
+app.use("/api/address", addressRouter);
+app.use("/api/comment", commentRouter);
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.use((req, res, next) => {
   return res.status(404).json({
