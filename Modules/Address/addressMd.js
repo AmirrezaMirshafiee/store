@@ -10,6 +10,10 @@ const addressSchema = new mongoose.Schema(
       type: String,
       required: [true, "city  is required"],
     },
+    title: {
+      type: String,
+      required: [true, "city  is required"],
+    },
     address: {
       type: String,
       required: [true, "city  is required"],
@@ -31,6 +35,19 @@ const addressSchema = new mongoose.Schema(
       type: String,
       required: [true, "postCode  is required"],
       match: [/\b\d{5}[ -]?\d{5}\b/, "invalid postCode"],
+    },
+    isMe: {
+      type: Boolean,
+      default: true,
+    },
+    receiverPhoneNumber: {
+      type: String,
+      required: [true, "receiverPhoneNumber  is required"],
+      match: [/^(\+98|0)?9\d{9}$/, "invalid receiverPhoneNumber"],
+    },
+    receiverName: {
+      type: String,
+      required: [true, "receiverName  is required"],
     },
   },
   { timestamps: true, versionKey: false },
