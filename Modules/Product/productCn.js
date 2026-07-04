@@ -3,6 +3,7 @@ import User from "../User/userMd.js";
 import ApiFeatures, { HandleERROR, catchAsync } from "vanta-api";
 import fs from "fs";
 import { __direname } from "../../app.js";
+import ProductVariant from "../ProductVariant/productVariantMd.js";
 export const create = catchAsync(async (req, res, next) => {
   const product = await Product.create(req.body);
   return res.status(201).json({
@@ -97,7 +98,8 @@ export const remove = catchAsync(async (req, res, next) => {
       fs.unlinkSync(`${__direname}/Public/${img}`);
     }
   }
-  // comment
+  await Comment.deleteMany({ productId: req.params.id });
+  await ProductVariant.deleteMany({ productId: req.params.id });
   return res.status(201).json({
     success: true,
     message: "deleted product successfully",
