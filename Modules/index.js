@@ -9,4 +9,5 @@ import productRouter from "./Product/product.js";
 import productVariantRouter from "./ProductVariant/productVariant.js";
 import addressRouter from "./Address/address.js";
 import commentRouter from "./Comment/comment.js";
-export {uploadRouter,userRouter,authRouter,brandRouter,sliderRouter,categoryRouter,variantRouter,productRouter,productVariantRouter,addressRouter,commentRouter};
+import cartRouter from "./Cart/cart.js";
+export {uploadRouter,userRouter,authRouter,brandRouter,sliderRouter,categoryRouter,variantRouter,productRouter,productVariantRouter,addressRouter,commentRouter,cartRouter};
