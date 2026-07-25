@@ -14,8 +14,12 @@ import {
   cartRouter,
   categoryRouter,
   commentRouter,
+  discountCodeRouter,
+  orderRouter,
   productRouter,
   productVariantRouter,
+  reportRouter,
+  searchRouter,
   sliderRouter,
   uploadRouter,
   userRouter,
@@ -24,6 +28,7 @@ import {
 import rateLimit from "express-rate-limit";
 import { swaggerSpec } from "./Utils/Swagger.js";
 import { cronJobPayment } from "./Modules/Order/ordenCn.js";
+import isLogin from "./Middlewares/isLogin.js";
 const app = express();
 const __filename = fileURLToPath(import.meta.url);
 export const __direname = path.dirname(__filename);
@@ -39,19 +44,22 @@ app.use(cors());
 app.use("/upload", express.static(`${__direname}/Public`));
 app.use(exportValidationData);
 app.use(limit);
-app.use("/api/upload", uploadRouter);
-app.use("/api/users", userRouter);
-app.use("/api/auth", authRouter);
-app.use("/api/brand", brandRouter);
-app.use("/api/slider", sliderRouter);
-app.use("/api/category", categoryRouter);
-app.use("/api/variants", variantRouter);
-app.use("/api/products", productRouter);
-app.use("/api/product-variant", productVariantRouter);
-app.use("/api/address", addressRouter);
-app.use("/api/comment", commentRouter);
-app.use("/api/cart", cartRouter);
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+app.use('/api/users',userRouter)
+app.use('/api/auth',authRouter)
+app.use('/api/brands',brandRouter)
+app.use('/api/variants',variantRouter)
+app.use('/api/categories',categoryRouter)
+app.use('/api/products',productRouter)
+app.use('/api/upload',uploadRouter)
+app.use('/api/comments',commentRouter)
+app.use('/api/orders',orderRouter)
+app.use('/api/addresses',isLogin,addressRouter)
+app.use('/api/product-variants',productVariantRouter)
+app.use('/api/sliders',sliderRouter)
+app.use('/api/cart',isLogin,cartRouter)
+app.use('/api/discount-code',discountCodeRouter)
+app.use('/api/search',searchRouter)
+app.use('/api-docs',swaggerUi.serve,swaggerUi.setup(swaggerSpec))
 app.use((req, res, next) => {
   return res.status(404).json({
     success: false,
