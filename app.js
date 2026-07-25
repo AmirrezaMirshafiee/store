@@ -6,6 +6,7 @@ import { fileURLToPath } from "url";
 import { catchError } from "vanta-api";
 import swaggerUi from "swagger-ui-express";
 import { exportValidationData } from "./Middlewares/ExportValidation.js";
+import cron from "node-cron";
 import {
   addressRouter,
   authRouter,
@@ -22,6 +23,7 @@ import {
 } from "./Modules/index.js";
 import rateLimit from "express-rate-limit";
 import { swaggerSpec } from "./Utils/Swagger.js";
+import { cronJobPayment } from "./Modules/Order/ordenCn.js";
 const app = express();
 const __filename = fileURLToPath(import.meta.url);
 export const __direname = path.dirname(__filename);
@@ -30,6 +32,7 @@ const limit = rateLimit({
   max: 20,
   message: "ip blocked",
 });
+cron.schedule("* 10 * * * * ", cronJobPayment);
 app.use(express.json());
 app.use(morgan("dev"));
 app.use(cors());
