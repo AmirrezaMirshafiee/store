@@ -10,4 +10,25 @@ import productVariantRouter from "./ProductVariant/productVariant.js";
 import addressRouter from "./Address/address.js";
 import commentRouter from "./Comment/comment.js";
 import cartRouter from "./Cart/cart.js";
-export {uploadRouter,userRouter,authRouter,brandRouter,sliderRouter,categoryRouter,variantRouter,productRouter,productVariantRouter,addressRouter,commentRouter,cartRouter};
+import reportRouter from "./Report/report.js";
+import orderRouter from "./Order/order.js";
+import discountCodeRouter from "./DiscountCode/discountCode.js";
+import searchRouter from "./Search/search.js";
+export {
+  uploadRouter,
+  userRouter,
+  authRouter,
+  brandRouter,
+  sliderRouter,
+  categoryRouter,
+  variantRouter,
+  productRouter,
+  productVariantRouter,
+  addressRouter,
+  commentRouter,
+  cartRouter,
+  reportRouter,
+  orderRouter,
+  discountCodeRouter,
+  searchRouter,
+};
